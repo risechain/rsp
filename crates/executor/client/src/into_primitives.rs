@@ -110,6 +110,7 @@ impl BlockValidator<ChainSpec> for EthPrimitives {
             &chain_spec,
             &execution_output.result.receipts,
             &execution_output.result.requests,
+            None,
         )
     }
 }
@@ -189,6 +190,7 @@ impl BlockValidator<reth_optimism_chainspec::OpChainSpec>
             block.header(),
             &chain_spec,
             &execution_output.result,
+            None,
         )
     }
 }

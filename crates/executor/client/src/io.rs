@@ -136,6 +136,7 @@ impl DatabaseRef for TrieDB<'_> {
             nonce: account_in_trie.nonce,
             code_hash: account_in_trie.code_hash,
             code: None,
+            account_id: None,
         });
 
         Ok(account)
