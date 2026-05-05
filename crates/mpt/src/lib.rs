@@ -2,7 +2,7 @@
 
 use alloy_primitives::{keccak256, map::HashMap, Address, B256};
 use alloy_rpc_types::EIP1186AccountProofResponse;
-use reth_trie::{AccountProof, HashedPostState, HashedStorage, TrieAccount};
+use reth_trie_common::{AccountProof, HashedPostState, HashedStorage, TrieAccount};
 use serde::{Deserialize, Serialize};
 
 #[cfg(feature = "execution-witness")]

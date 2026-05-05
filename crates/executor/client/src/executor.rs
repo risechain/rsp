@@ -11,7 +11,7 @@ use reth_evm::{
 use reth_evm_ethereum::EthEvmConfig;
 use reth_execution_types::ExecutionOutcome;
 use reth_primitives_traits::Block;
-use reth_trie::KeccakKeyHasher;
+use reth_trie_common::KeccakKeyHasher;
 use revm::{database::WrapDatabaseRef, install_crypto};
 use revm_primitives::Address;
 

@@ -6,7 +6,7 @@ use itertools::Itertools;
 use reth_errors::ProviderError;
 use reth_ethereum_primitives::EthPrimitives;
 use reth_primitives_traits::{NodePrimitives, SealedHeader};
-use reth_trie::{TrieAccount, EMPTY_ROOT_HASH};
+use reth_trie_common::{TrieAccount, EMPTY_ROOT_HASH};
 use revm::{
     state::{AccountInfo, Bytecode},
     DatabaseRef,
@@ -136,6 +136,7 @@ impl DatabaseRef for TrieDB<'_> {
             nonce: account_in_trie.nonce,
             code_hash: account_in_trie.code_hash,
             code: None,
+            account_id: None,
         });
 
         Ok(account)

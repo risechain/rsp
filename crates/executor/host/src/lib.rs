@@ -18,6 +18,9 @@ pub mod alerting;
 
 mod error;
 
+mod into_primitives;
+pub use into_primitives::IntoPrimitives;
+
 mod executor_components;
 pub use executor_components::{EthExecutorComponents, ExecutorComponents, OpExecutorComponents};
 

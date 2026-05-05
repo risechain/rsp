@@ -16,7 +16,7 @@ serde.workspace = true
 thiserror.workspace = true
 
 # reth
-reth-trie.workspace = true
+reth-trie-common.workspace = true
 
 # alloy
 alloy-primitives.workspace = true

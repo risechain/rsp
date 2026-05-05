@@ -1,6 +1,6 @@
 use alloy_primitives::{map::HashMap, B256, U256};
 use reth_primitives_traits::Account;
-use reth_trie::{HashedPostState, HashedStorage};
+use reth_trie_common::{HashedPostState, HashedStorage};
 use rsp_mpt::EthereumState;
 
 fn main() {

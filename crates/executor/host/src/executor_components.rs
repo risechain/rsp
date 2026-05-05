@@ -12,7 +12,7 @@ use reth_optimism_chainspec::OpChainSpec;
 use reth_optimism_evm::OpEvmConfig;
 use reth_optimism_primitives::OpPrimitives;
 use reth_primitives_traits::NodePrimitives;
-use rsp_client_executor::{custom::CustomEvmFactory, BlockValidator, IntoInput, IntoPrimitives};
+use rsp_client_executor::{custom::CustomEvmFactory, BlockValidator, IntoInput};
 use rsp_primitives::genesis::Genesis;
 use serde::de::DeserializeOwned;
 #[cfg(feature = "cuda")]
@@ -22,7 +22,7 @@ use sp1_sdk::{
     SP1Stdin,
 };
 
-use crate::ExecutionHooks;
+use crate::{ExecutionHooks, IntoPrimitives};
 
 pub trait ExecutorComponents {
     type Prover: Prover + MaybeProveWithCycles + 'static;

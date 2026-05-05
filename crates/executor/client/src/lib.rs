@@ -10,4 +10,4 @@ pub mod executor;
 pub mod tracking;
 
 mod into_primitives;
-pub use into_primitives::{BlockValidator, FromInput, IntoInput, IntoPrimitives};
+pub use into_primitives::{BlockValidator, FromInput, IntoInput};

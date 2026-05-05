@@ -27,7 +27,7 @@ use core::{
     fmt::{Debug, Write},
     iter, mem,
 };
-use reth_trie::{AccountProof, Nibbles};
+use reth_trie_common::{AccountProof, Nibbles};
 use std::sync::Mutex;
 
 use rlp::{Decodable, DecoderError, Prototype, Rlp};

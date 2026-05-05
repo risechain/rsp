@@ -1,6 +1,6 @@
 use alloy_rpc_types::EIP1186AccountProofResponse;
 use reth_primitives_traits::Account;
-use reth_trie::{AccountProof, StorageProof, EMPTY_ROOT_HASH};
+use reth_trie_common::{AccountProof, StorageProof, EMPTY_ROOT_HASH};
 
 /// Converts an [EIP1186AccountProofResponse] to an [AccountProof].
 pub fn eip1186_proof_to_account_proof(proof: EIP1186AccountProofResponse) -> AccountProof {

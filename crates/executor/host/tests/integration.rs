@@ -8,9 +8,9 @@ use revm_primitives::{address, Address};
 use rsp_client_executor::{
     executor::{ClientExecutor, EthClientExecutor},
     io::ClientExecutorInput,
-    BlockValidator, FromInput, IntoInput, IntoPrimitives,
+    BlockValidator, FromInput, IntoInput,
 };
-use rsp_host_executor::{EthHostExecutor, HostExecutor};
+use rsp_host_executor::{EthHostExecutor, HostExecutor, IntoPrimitives};
 use rsp_primitives::genesis::{genesis_from_json, Genesis, OP_SEPOLIA_GENESIS_JSON};
 use serde::{de::DeserializeOwned, Serialize};
 use tracing_subscriber::{

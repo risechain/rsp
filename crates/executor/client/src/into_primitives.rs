@@ -1,7 +1,6 @@
 use std::sync::Arc;
 
-use alloy_consensus::{Block, Header, TxEnvelope};
-use alloy_network::{Ethereum, Network};
+use alloy_consensus::Block;
 use reth_chainspec::{ChainSpec, EthChainSpec, NamedChain};
 use reth_consensus::HeaderValidator;
 use reth_consensus_common::validation::validate_body_against_header;
@@ -10,12 +9,6 @@ use reth_ethereum_consensus::EthBeaconConsensus;
 use reth_ethereum_primitives::EthPrimitives;
 use reth_execution_types::BlockExecutionOutput;
 use reth_primitives_traits::{NodePrimitives, RecoveredBlock, SealedHeader};
-
-pub trait IntoPrimitives<N: Network>: NodePrimitives {
-    fn into_primitive_block(block: N::BlockResponse) -> Self::Block;
-
-    fn into_consensus_header(header: N::HeaderResponse) -> Header;
-}
 
 pub trait FromInput: NodePrimitives {
     fn from_input_block(block: Block<Self::SignedTx>) -> Self::Block;
@@ -44,17 +37,6 @@ pub trait BlockValidator<CS>: NodePrimitives {
         chain_spec: Arc<CS>,
         execution_output: &BlockExecutionOutput<Self::Receipt>,
     ) -> Result<(), ConsensusError>;
-}
-
-impl IntoPrimitives<Ethereum> for EthPrimitives {
-    fn into_primitive_block(block: alloy_rpc_types::Block) -> Self::Block {
-        let block = block.map_transactions(|tx| TxEnvelope::from(tx).into());
-        block.into_consensus()
-    }
-
-    fn into_consensus_header(header: alloy_rpc_types::Header) -> Header {
-        header.into()
-    }
 }
 
 impl FromInput for EthPrimitives {
@@ -110,21 +92,8 @@ impl BlockValidator<ChainSpec> for EthPrimitives {
             &chain_spec,
             &execution_output.result.receipts,
             &execution_output.result.requests,
+            None,
         )
-    }
-}
-
-#[cfg(feature = "optimism")]
-impl IntoPrimitives<op_alloy_network::Optimism> for reth_optimism_primitives::OpPrimitives {
-    fn into_primitive_block(
-        block: alloy_rpc_types::Block<op_alloy_rpc_types::Transaction>,
-    ) -> Self::Block {
-        let block = block.map_transactions(|tx| tx.inner.inner.into_inner());
-        block.into_consensus()
-    }
-
-    fn into_consensus_header(header: alloy_rpc_types::Header) -> Header {
-        header.into()
     }
 }
 
@@ -189,6 +158,7 @@ impl BlockValidator<reth_optimism_chainspec::OpChainSpec>
             block.header(),
             &chain_spec,
             &execution_output.result,
+            None,
         )
     }
 }

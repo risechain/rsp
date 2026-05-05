@@ -17,12 +17,12 @@ use reth_trie::{HashedPostState, KeccakKeyHasher};
 use revm::database::CacheDB;
 use revm_primitives::Address;
 use rsp_client_executor::{
-    custom::CustomEvmFactory, io::ClientExecutorInput, BlockValidator, IntoInput, IntoPrimitives,
+    custom::CustomEvmFactory, io::ClientExecutorInput, BlockValidator, IntoInput,
 };
 use rsp_primitives::genesis::Genesis;
 use rsp_rpc_db::RpcDb;
 
-use crate::HostError;
+use crate::{HostError, IntoPrimitives};
 
 pub type EthHostExecutor = HostExecutor<EthEvmConfig<ChainSpec, CustomEvmFactory>, ChainSpec>;
 
